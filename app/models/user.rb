@@ -3,9 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  #has_many :items
-  #has_many :comments
-  #has_many :purchase_managements
 
   # 各データのDBに保存できる条件をバリデーションで設定
   # presence: true → 空ではないか 
@@ -25,4 +22,8 @@ class User < ApplicationRecord
   end
 
   validates :birthday, presence: true
+
+  has_many :items
+  #has_many :comments
+  #has_many :purchase_managements
 end

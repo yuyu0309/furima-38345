@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if @item.purchase_management.present?
   end
 
   def update
@@ -40,10 +41,6 @@ class ItemsController < ApplicationController
   end
 
   private
-  
-  def item_params
-    params.require(:item).permit(:image, :item_name, :explanation, :category_id, :situation_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, :price).merge(user_id: current_user.id)
-  end
 
   def item_find
     @item = Item.find(params[:id])
@@ -51,5 +48,9 @@ class ItemsController < ApplicationController
 
   def different_user
     redirect_to root_path unless current_user.id == @item.user_id
+  end
+
+  def item_params
+    params.require(:item).permit(:image, :item_name, :explanation, :category_id, :situation_id, :shipping_charge_id, :prefecture_id, :delivery_date_id, :price).merge(user_id: current_user.id)
   end
 end

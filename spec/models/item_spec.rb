@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品の保存' do
     context '商品が出品できる場合' do
-      it '9項目全てが存在すれば登録できる' do
+      it '9項目全てが正しく入力されていれば登録できる' do
         expect(@item).to be_valid
       end
     end
